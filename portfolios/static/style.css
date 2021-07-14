@@ -1,0 +1,173 @@
+@font-face {
+  font-family: Graphik;
+  src: url(font/Graphik-Bold.otf);
+  font-weight: bolder;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(font/Graphik-Light.otf);
+  font-weight: lighter;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(font/Graphik-Medium.otf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Graphik;
+  src: url(font/Graphik-Regular.otf);
+  font-weight: normal;
+}
+
+nav {
+    min-height: 60px;
+}
+
+.nav-link {
+    padding-left: 2rem!important;
+}
+
+.bg-dark {
+  background-color: #817e9f !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fbfbff;
+  font-weight: lighter;
+  font-size: 1.2rem;
+  font-family: "Graphik";
+}
+
+.navbar-brand {
+  color: #fbfbff !important;
+  font-weight: 400;
+  font-size: 1.4rem;
+  font-family: "Graphik";
+}
+
+.btn-primary{
+    background-color: #7371fc;
+    border: #7371fc;
+    font-weight: bold;
+    font-family: "Graphik";
+}
+
+.btn-primary:active{
+    background-color: #5452bc !important;
+    border: #5452bc;
+}
+.btn-primary:hover {
+  color: #fbfbff;
+  background-color: #5452bc;
+  border-color: #5452bc;
+}
+
+.jumbotron-fluid {
+    padding-top: 4%;
+    padding-bottom: 4%;
+    font-family: "Graphik";
+}
+.flecha{
+    padding-top: 12%;
+}
+
+.title {
+    padding-top: 12%;
+    font-family: "Graphik";
+    background-image: url("fondo.png");
+    text-shadow: 2px 1px 3px #000;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron {
+    font-family: "Graphik";
+    color: #07080b;
+    background-color: #fbfbff;
+    border-color: #fbfbff;
+}
+
+.light{
+    color: #07080b;
+    background-color: #fbfbff;
+    border-color: #fbfbff;
+    font-family: "Graphik";
+}
+
+body{
+    color: #fbfbff;
+    background-color: #07080b;
+    border-color: #07080b;
+}
+
+h1.display-4{
+    font-weight: bold;
+    font-family: "Graphik";
+}
+
+h1.display-5{
+    font-weight: bold;
+    font-family: "Graphik";
+}
+
+p.home{
+    font-weight: normal;
+    font-size: 1.3rem;
+    font-family: "Graphik";
+}
+
+.caracteristicas{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+footer {
+    font-size: 1rem;
+    padding: 1.5%;
+    background-color: #817e9f ;
+    color: #fff;
+    font-weight: normal;
+    font-family: "Graphik";
+}
+
+footer a {
+    font-size: 1rem;
+    color: #fbfbff;
+    font-weight: normal;
+    font-family: "Graphik";
+}
+.display-6{
+    font-size: 1.8rem;
+}
+.pasos {
+    padding-top:2.5rem;
+}
+
+p{
+    font-weight: 200;
+}
+
+footer a:hover {
+    font-size: 1rem;
+    color: #fbfbff;
+    font-weight: bold;
+    font-family: "Graphik";
+}
+
+.btn-xl {
+    padding: 18px 28px;
+    font-size: 28px;
+    line-height: normal;
+    -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+}
+
+.top{
+    padding-top: 3rem;
+}

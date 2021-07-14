@@ -1,0 +1,69 @@
+{% extends "header.html" %}
+{% load static %}
+{% block page_content %}
+      <!-- Start Content -->
+      <div class="container-fluid top">
+          <div class="row">
+              <div class="col-1">
+              </div>
+              <div class="col-lg-10">
+                  <h1 class="display-4">Contáctanos</h1>
+                  Por favor déjanos un mensaje y nosotros nos ponemos en contacto contigo.
+              </div>
+          </div>
+      </div>
+      <div class="container-fluid">
+          <form>
+              <div class="row">
+                  <div class="col-1">
+                  </div>
+                  <div class="col-6">
+                      <div class="form-group">
+                          <label for="nombre">Nombre</label>
+                          <input type="name" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="tu nombre completo">
+                      </div>
+                  </div>
+                  <div class="col-4">
+                      <div class="form-group">
+                          <label for="email">Correo electronico</label>
+                          <input type="email" class="form-control" id="email" placeholder="ejemplo@mail.com">
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-1">
+                  </div>
+                  <div class="col-6">
+                      <div class="form-group">
+                          <label for="exampleFormControlSelect1">Tema</label>
+                          <select class="form-control" id="exampleFormControlSelect1">
+                              <option>Quejas y sugerencias</option>
+                              <option>Otras</option>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-1">
+                  </div>
+                  <div class="col-10">
+                      <div class="form-group">
+                          <label for="exampleFormControlTextarea1">Escriba su mensaje:</label>
+                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-10">
+                  </div>
+                  <div class="col-2">
+                      <button type="submit" class="btn btn-primary">Enviar</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+      <br>
+      <br>
+      <br>
+      <!-- End Content -->
+{% endblock %}

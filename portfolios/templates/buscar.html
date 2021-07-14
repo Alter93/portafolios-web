@@ -1,0 +1,161 @@
+{% extends "header.html" %}
+{% load static %}
+{% block page_content %}
+    <!-- Start Content -->
+    <div class="container-fluid top">
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-lg-10">
+                <h1 class="display-5">Busca tu portafolio</h1>
+                <p>Primero que nada, necesitamos sabe un poco de tí...</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <form>
+            <div class="row">
+                <div class="col-lg-1">
+                </div>
+                <div class="col-lg-7">
+                    <div class="row">
+                        <div class="col-12">
+                        <div class="form-group">
+                            <label for="nombre">Nombre completo</label>
+                            <input type="name" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="alejandro alvarez etchegaray">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Fecha de nacimiento</label>
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input type="text" class="form-control">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <span class="fa fa-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-7">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Correo electronico</label>
+                                <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" placeholder="alejandro@mail.com">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p>Ahora, un poco de información acerca de su inversión:</p>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-7">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Objetivo</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>Fondo de retiro</option>
+                                    <option>Generar una renta</option>
+                                    <option>Acumular riqueza</option>
+                                    <option>Ahorro para mis hijos</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Cantidad de dinero</label>
+                                <input type="number" class="form-control" id="dinero" aria-describedby="emailHelp" placeholder="$50,000.00 MXN">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="exampleFormControlSelect1">Horizonte de tiempo</label>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                    <label class="form-check-label" for="inlineRadio1">1-2 años</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">3-5 años</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                    <label class="form-check-label" for="inlineRadio3">5+ años</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="exampleFormControlSelect1">Riesgo</label>
+                            <div class="form-group">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio1" value="option1" checked>
+                                    <label class="form-check-label" for="inlineRadio1">Bajo</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio2" value="option2">
+                                    <label class="form-check-label" for="inlineRadio2">Medio</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio3" value="option3">
+                                    <label class="form-check-label" for="inlineRadio3">Alto</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="exampleFormControlSelect1">Tipo de portafolio</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                <label class="form-check-label" for="exampleRadios1">
+                                    Portafolio de acciones de la Bolsa de Valores
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <label class="form-check-label" for="exampleRadios2">
+                                    Portafolio integral (acciones, bonos, fondos de ahorro)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <p>
+                        <br>
+                        <br>
+                    Stay up to date on the development of Bootstrap and reach out to the community with these helpful resources.
+
+                    Follow @getbootstrap on Twitter.
+                    Read and subscribe to The Official Bootstrap Blog.
+                    Join the official Slack room.
+                    Chat with fellow Bootstrappers in IRC. On the irc.freenode.net server, in the ##bootstrap channel.
+                    Implementation help may be found at Stack Overflow (tagged bootstrap-4).
+                    Developers should use the keyword bootstrap on packages which modify or add to the functionality of Bootstrap when distributing through npm or similar delivery mechanisms for maximum discoverability.
+                    You can also follow @getbootstrap on Twitter for the latest gossip and awesome music videos.
+                </p>
+                    <br>
+                    <br>
+                    <button class="btn-lg btn-primary">Buscar</button>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!-- End Content -->
+{% endblock %}

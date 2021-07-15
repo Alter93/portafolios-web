@@ -4,7 +4,17 @@
     <!-- Start Content -->
     <div class="container-fluid top">
         <div class="row">
-            <div class="col-1">
+            <div class="col-12">
+                {% if success %}
+                <div class="alert alert-success">
+                    {{ success }}
+                </div>
+                {% endif %}
+                {% if error %}
+                <div class="alert alert-danger">
+                    {{ error }}
+                </div>
+                {% endif %}
             </div>
             <div class="col-lg-10">
                 <h1 class="display-5">Busca tu portafolio</h1>
@@ -14,7 +24,8 @@
         </div>
     </div>
     <div class="container-fluid">
-        <form>
+        <form action="/buscar" method="post">
+            {% csrf_token %}
             <div class="row">
                 <div class="col-lg-1">
                 </div>
@@ -23,7 +34,7 @@
                         <div class="col-12">
                         <div class="form-group">
                             <label for="nombre">Nombre completo</label>
-                            <input type="name" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="alejandro alvarez etchegaray">
+                            <input type="name" class="form-control" name="nombre" placeholder="Tu nombre" required>
                         </div>
                         </div>
                     </div>
@@ -32,7 +43,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Fecha de nacimiento</label>
                                 <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" class="form-control">
+                                    <input type="text" name="fecha_nacimiento" class="form-control">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <span class="fa fa-calendar"></span>
@@ -44,7 +55,7 @@
                         <div class="col-7">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Correo electronico</label>
-                                <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" placeholder="alejandro@mail.com">
+                                <input type="email" class="form-control" name="correo" aria-describedby="emailHelp" placeholder="alejandro@mail.com">
                             </div>
                         </div>
                     </div>
@@ -60,7 +71,7 @@
                         <div class="col-7">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Objetivo</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
+                                <select class="form-control" name="objetivo">
                                     <option>Fondo de retiro</option>
                                     <option>Generar una renta</option>
                                     <option>Acumular riqueza</option>
@@ -71,7 +82,7 @@
                         <div class="col-5">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Cantidad de dinero</label>
-                                <input type="number" class="form-control" id="dinero" aria-describedby="emailHelp" placeholder="$50,000.00 MXN">
+                                <input type="number" class="form-control" name="dinero"  placeholder="$50,000.00 MXN">
                             </div>
                         </div>
                     </div>
@@ -80,15 +91,15 @@
                             <label for="exampleFormControlSelect1">Horizonte de tiempo</label>
                             <div class="form-group">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
+                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio1" value="2y" checked>
                                     <label class="form-check-label" for="inlineRadio1">1-2 años</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio2" value="3y">
                                     <label class="form-check-label" for="inlineRadio2">3-5 años</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio3" value="5y">
                                     <label class="form-check-label" for="inlineRadio3">5+ años</label>
                                 </div>
                             </div>
@@ -99,15 +110,15 @@
                             <label for="exampleFormControlSelect1">Riesgo</label>
                             <div class="form-group">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio1" value="option1" checked>
+                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio1" value="1" checked>
                                     <label class="form-check-label" for="inlineRadio1">Bajo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio2" value="option2">
+                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio2" value="2">
                                     <label class="form-check-label" for="inlineRadio2">Medio</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio3" value="option3">
+                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio3" value="3">
                                     <label class="form-check-label" for="inlineRadio3">Alto</label>
                                 </div>
                             </div>

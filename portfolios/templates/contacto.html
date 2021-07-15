@@ -2,7 +2,18 @@
 {% load static %}
 {% block page_content %}
       <!-- Start Content -->
+
       <div class="container-fluid top">
+          {% if success %}
+          <div class="alert alert-success">
+              {{ success }}
+          </div>
+          {% endif %}
+          {% if error %}
+          <div class="alert alert-danger">
+              {{ error }}
+          </div>
+          {% endif %}
           <div class="row">
               <div class="col-1">
               </div>
@@ -12,21 +23,22 @@
               </div>
           </div>
       </div>
-      <div class="container-fluid">
-          <form>
+      <div class="container-fluid" style="min-height: 63vh;">
+          <form action="/contacto" method="post">
+              {% csrf_token %}
               <div class="row">
                   <div class="col-1">
                   </div>
                   <div class="col-6">
                       <div class="form-group">
                           <label for="nombre">Nombre</label>
-                          <input type="name" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="tu nombre completo">
+                          <input type="nombre" class="form-control" name="nombre" placeholder="tu nombre completo" required>
                       </div>
                   </div>
                   <div class="col-4">
                       <div class="form-group">
                           <label for="email">Correo electronico</label>
-                          <input type="email" class="form-control" id="email" placeholder="ejemplo@mail.com">
+                          <input type="email" class="form-control" name="correo" placeholder="ejemplo@mail.com" required>
                       </div>
                   </div>
               </div>
@@ -36,7 +48,7 @@
                   <div class="col-6">
                       <div class="form-group">
                           <label for="exampleFormControlSelect1">Tema</label>
-                          <select class="form-control" id="exampleFormControlSelect1">
+                          <select class="form-control" name="asunto">
                               <option>Quejas y sugerencias</option>
                               <option>Otras</option>
                           </select>
@@ -49,7 +61,7 @@
                   <div class="col-10">
                       <div class="form-group">
                           <label for="exampleFormControlTextarea1">Escriba su mensaje:</label>
-                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                          <textarea class="form-control" name="mensaje" rows="4" required></textarea>
                       </div>
                   </div>
               </div>

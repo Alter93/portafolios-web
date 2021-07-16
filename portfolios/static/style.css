@@ -31,12 +31,12 @@ nav {
 }
 
 .bg-dark {
-  background-color: #817e9f !important;
+  background-color: #07080b !important;
 }
 
 .navbar-dark .navbar-nav .nav-link {
   color: #fbfbff;
-  font-weight: lighter;
+  font-weight: 100;
   font-size: 1.2rem;
   font-family: "Graphik";
 }
@@ -129,7 +129,7 @@ p.home{
 footer {
     font-size: 1rem;
     padding: 1.5%;
-    background-color: #817e9f ;
+    background-color: #07080b ;
     color: #fff;
     font-weight: normal;
     font-family: "Graphik";

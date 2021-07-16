@@ -2,6 +2,7 @@ from datetime import date
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
+from .portafolio_helper import PortafolioHelper
 from .contact_form import ContactForm
 from .buscar_form import BuscarForm
 from .models import Usuario, Comentario, UsuarioPortafolio, Portafolio
@@ -9,6 +10,36 @@ from .models import Usuario, Comentario, UsuarioPortafolio, Portafolio
 # Create your views here.
 def home(request):
     return render(request, 'homepage.html', {})
+
+def portafolio(request, id = 13):
+    usuario_port = UsuarioPortafolio.objects.get(id=id)
+    port = PortafolioHelper(
+        filename = usuario_port.portafolio.archivo,
+        date = str(usuario_port.portafolio.fecha),
+        time = usuario_port.tiempo
+    )
+    market, prices = port.crear_listas()
+    simbolos = port.cargar_simbolos()
+    metricas = simbolos[-1]
+    metricas["std"] = metricas["std"] * -100
+    metricas["return"] = metricas["return"] * 100
+    riesgo = {1:"Bajo",2:"Medio",3:"Alto"}
+    ganancia = float(usuario_port.dinero) * metricas["return"] / 100
+    return render(
+        request,
+        'portafolio.html', {
+            "market_x": market[0],
+            "market_y": market[1],
+            "prices_x": prices[0],
+            "prices_y": prices[1],
+            "simbolos": simbolos[:-1],
+            "metricas": metricas,
+            "dinero": usuario_port.dinero,
+            "tiempo": usuario_port.tiempo[0],
+            "riesgo": riesgo[usuario_port.riesgo],
+            "ganancia" : ganancia,
+            "email": usuario_port.usuario.correo
+    })
 
 def acerca(request):
     return render(request, 'acerca.html', {})
@@ -68,13 +99,13 @@ def buscar(request):
             if (dinero > 125000):
                 cantidad_acciones = 15
 
-            portafolio = Portafolio.objects.order_by('fecha').filter(
+            portafolio = Portafolio.objects.order_by('-fecha').filter(
                 dinero = cantidad_acciones,
                 riesgo = form.cleaned_data.get('riesgo'),
                 tiempo = form.cleaned_data.get('tiempo'),
                 metrica = metrica
             )[0]
-            
+
             print(portafolio.archivo)
 
             usuario_port = UsuarioPortafolio(

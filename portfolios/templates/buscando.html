@@ -1,7 +1,9 @@
 {% extends "header.html" %}
 {% load static %}
 {% block page_content %}
-
+    <script type="text/javascript">
+        setTimeout(function(){ window.location = "/portafolio/{{ id }}"; },5000);
+    </script>
     <div class="row align-items-center" style="min-height: 83.5vh; text-align: center;">
         <div class="container-fluid">
             <p>Buscando su portafolio.
@@ -15,7 +17,6 @@
             </div>
             </div>
         </div>
-
     </div>
 
 

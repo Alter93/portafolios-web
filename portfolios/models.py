@@ -34,10 +34,12 @@ class Portafolio(models.Model):
 class UsuarioPortafolio(models.Model):
     id = models.AutoField(primary_key=True)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    metrica = models.CharField(max_length=25)
     objetivo = models.CharField(max_length=100)
     dinero = models.DecimalField(max_digits=12,decimal_places=0)
     tiempo = models.CharField(max_length=2)
     riesgo = models.DecimalField(max_digits=1,decimal_places=0)
+    uuid_string = models.CharField(max_length=33)
     fecha_visita = models.DateField()
     portafolio = models.ForeignKey(Portafolio, on_delete=models.CASCADE)
 

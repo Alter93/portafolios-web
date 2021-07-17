@@ -20,7 +20,7 @@
             </div>
             <div class="col-lg-10">
                 <h1 class="display-5">Busca tu portafolio</h1>
-                <p>Primero que nada, necesitamos sabe un poco de tí...</p>
+                <p>Primero que nada, necesitamos saber un poco de tí...</p>
 
             </div>
         </div>
@@ -57,7 +57,7 @@
                         <div class="col-7">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Correo electronico</label>
-                                <input type="email" class="form-control" name="correo" aria-describedby="emailHelp" placeholder="alejandro@mail.com">
+                                <input type="email" class="form-control" name="correo" aria-describedby="emailHelp" placeholder="alejandro@dominio.com">
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,8 @@
                         <div class="col-7">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Objetivo</label>
-                                <select class="form-control" name="objetivo">
+                                <select class="form-control selectpicker" name="objetivo" id="selectpicker">
+                                    <option selected>Seleccionar...</option>
                                     <option>Fondo de retiro</option>
                                     <option>Generar una renta</option>
                                     <option>Acumular riqueza</option>
@@ -82,9 +83,13 @@
                             </div>
                         </div>
                         <div class="col-5">
-                            <div class="form-group">
-                                <label for="exampleFormControlSelect1">Cantidad de dinero</label>
-                                <input type="number" class="form-control" name="dinero"  placeholder="$50,000.00 MXN" required>
+                            <label for="exampleFormControlSelect1">Cantidad de dinero</label>
+                            <div class="input-group">
+
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">$</span>
+                                </div>
+                                <input type="number" class="form-control" name="dinero"  placeholder="Dinero en pesos" required>
                             </div>
                         </div>
                     </div>
@@ -93,15 +98,15 @@
                             <label for="exampleFormControlSelect1">Horizonte de tiempo</label>
                             <div class="form-group">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio1" value="2y" checked>
+                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio1" value="2y" required>
                                     <label class="form-check-label" for="inlineRadio1">1-2 años</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio2" value="3y">
+                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio2" value="3y" required>
                                     <label class="form-check-label" for="inlineRadio2">3-5 años</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio3" value="5y">
+                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio3" value="5y" required>
                                     <label class="form-check-label" for="inlineRadio3">5+ años</label>
                                 </div>
                             </div>
@@ -112,15 +117,15 @@
                             <label for="exampleFormControlSelect1">Riesgo</label>
                             <div class="form-group">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio1" value="1" checked>
+                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio1" value="1" required>
                                     <label class="form-check-label" for="inlineRadio1">Bajo</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio2" value="2">
+                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio2" value="2" required>
                                     <label class="form-check-label" for="inlineRadio2">Medio</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio3" value="3">
+                                    <input class="form-check-input" type="radio" name="riesgo" id="inlineRadio3" value="3" required>
                                     <label class="form-check-label" for="inlineRadio3">Alto</label>
                                 </div>
                             </div>
@@ -128,37 +133,43 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <label for="exampleFormControlSelect1">Tipo de portafolio</label>
+                            <label for="exampleFormControlSelect1">Criterio de búsqueda</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                                <input class="form-check-input" type="radio" name="metrica" id="exampleRadios1" value="calculate_std" required>
                                 <label class="form-check-label" for="exampleRadios1">
-                                    Portafolio de acciones de la Bolsa de Valores
+                                    Orientada a la diversificación
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                                <input class="form-check-input" type="radio" name="metrica" id="exampleRadios2" value="beta_std_dev" required>
                                 <label class="form-check-label" for="exampleRadios2">
-                                    Portafolio integral (acciones, bonos, fondos de ahorro)
+                                    Orientada al retorno de inversión
                                 </label>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3">
+                    <p>Al llenar este formulario, el algoritmo va a buscar un portafolio de acuerdo a tus necesidades.</p>
                     <p>
-                        <br>
-                        <br>
-                    Stay up to date on the development of Bootstrap and reach out to the community with these helpful resources.
-
-                    Follow @getbootstrap on Twitter.
-                    Read and subscribe to The Official Bootstrap Blog.
-                    Join the official Slack room.
-                    Chat with fellow Bootstrappers in IRC. On the irc.freenode.net server, in the ##bootstrap channel.
-                    Implementation help may be found at Stack Overflow (tagged bootstrap-4).
-                    Developers should use the keyword bootstrap on packages which modify or add to the functionality of Bootstrap when distributing through npm or similar delivery mechanisms for maximum discoverability.
-                    You can also follow @getbootstrap on Twitter for the latest gossip and awesome music videos.
-                </p>
+                    Cada portafolio contiene acciones de empresas listadas en la Bolsa Mexicana de Valores.
+                    Cada acción tiene un porcentaje que representa su proporción dentro del portafolio.
+                    Estas acciones pueden ser compradas con cualquier intermediario (Casa de bolsa).
+                    </p>
+                    <p>
+                    Los portafolios sugeridos por ALTEC.dev estan pensados como una base para empezar a invertir en la bolsa.
+                    Estan diseñados para generar rendimientos a mediano plazo (entre 1 y 5 años).
+                    </p>
+                    <p>
+                    ALTEC.dev no compartira tus datos con ningún banco ni con ninguna otra empresa.
+                    </p>
                     <br>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required oninvalid="this.setCustomValidity('Por favor acepte los términos y condiciones')">
+                      <label class="form-check-label" for="defaultCheck1">
+                        Acepto los términos y condiciones
+                      </label>
+                    </div>
                     <br>
                     <button class="btn-lg btn-primary">Buscar</button>
                 </div>

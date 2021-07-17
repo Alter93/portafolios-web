@@ -1,6 +1,9 @@
 from datetime import date
+
+from django.http import Http404
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.utils.crypto import get_random_string
 
 from .portafolio_helper import PortafolioHelper
 from .contact_form import ContactForm
@@ -12,7 +15,10 @@ def home(request):
     return render(request, 'homepage.html', {})
 
 def portafolio(request, id = 13):
-    usuario_port = UsuarioPortafolio.objects.get(id=id)
+    try:
+        usuario_port = UsuarioPortafolio.objects.get(uuid_string=id)
+    except UsuarioPortafolio.DoesNotExist:
+        raise Http404("El portafolio no existe.")
     port = PortafolioHelper(
         filename = usuario_port.portafolio.archivo,
         date = str(usuario_port.portafolio.fecha),
@@ -93,7 +99,7 @@ def buscar(request):
             usuario.save()
             dinero = form.cleaned_data.get('dinero')
             cantidad_acciones = 5
-            metrica = "beta_std_dev"
+            metrica = form.cleaned_data.get('metrica')
             if (dinero > 50000):
                 cantidad_acciones = 9
             if (dinero > 125000):
@@ -107,6 +113,7 @@ def buscar(request):
             )[0]
 
             print(portafolio.archivo)
+            unique_id = get_random_string(length=32)
 
             usuario_port = UsuarioPortafolio(
                 usuario = usuario,
@@ -114,12 +121,14 @@ def buscar(request):
                 riesgo=form.cleaned_data.get('riesgo'),
                 tiempo=form.cleaned_data.get('tiempo'),
                 dinero=dinero,
+                uuid_string = unique_id,
                 objetivo=form.cleaned_data.get('objetivo'),
+                metrica=form.cleaned_data.get('metrica'),
                 portafolio=portafolio
             )
 
             usuario_port.save()
-            return render(request, 'buscando.html', { "id": usuario_port.id })
+            return render(request, 'buscando.html', { "id": usuario_port.uuid_string })
         else:
             return render(request, 'buscar.html', {"error": form.errors})
 

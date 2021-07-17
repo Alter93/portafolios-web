@@ -8,3 +8,4 @@ class BuscarForm(forms.Form):
     dinero = forms.DecimalField(max_digits=12)
     tiempo = forms.CharField(max_length=2)
     riesgo = forms.DecimalField(max_digits=1)
+    metrica = forms.CharField(max_length=100)

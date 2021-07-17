@@ -2,121 +2,133 @@
 {% load static %}
 {% load humanize %}
 {% block page_content %}
-      <!-- Start Content -->
-      <div class="container-fluid top" style="min-height: 84.5vh;">
-          {% if portafolio %}
-          <div class="alert alert-success">
-              {{ portafolio }}
-          </div>
-          {% endif %}
-          <div class="row">
-              <div class="col-1">
-              </div>
-              <div class="col-lg-10">
-                  <h1 class="display-4">Portafolio de inversión</h1>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-lg-7">
-                  <div id="tester" style="height:500px;"></div>
-              </div>
-
-              <div class="col-lg-4">
-                  <h3>Componentes del portafolio</h3>
-                  {% for simbolo in simbolos %}
-
-                  {{ simbolo.symbol }}: {{ simbolo.name }}
-                  <div class="progress">
-                      <div class="progress-bar" role="progressbar" style="width: {{ simbolo.percentage }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ simbolo.percentage|floatformat:2 }}%</div>
-                  </div>
-                  <br>
-                  {% endfor %}
-              </div>
-
-          </div>
-          <div class="row">
-              <div class="col-1">
-              </div>
-              <div class="col-lg-6">
-                  <div class="row">
-
-                      <div class="col-4">
-                          Ganancia esperada (anual)
-                          <h2>{{ metricas.return|floatformat:2 }}%</h2>
-                      </div>
-                      <div class="col-4">
-                          Desviación estándar
-                          <h2>{{ metricas.std|floatformat:2 }}%</h2>
-                      </div>
-                      <div class="col-4">
-                          Dinero a invertir
-                          <h2>$ {{ dinero|intcomma }}</h2>
-                      </div>
-                  </div>
-                  <br>
-                  <div class="row">
-
-                      <div class="col-4">
-                          Ganacia bruta anual
-                          <h2>$ {{ ganancia|floatformat:2|intcomma }}</h2>
-                      </div>
-                      <div class="col-4">
-                          Duración de la inversión
-                          <h2>{{ tiempo }} años</h2>
-                      </div>
-                      <div class="col-4">
-                          Riesgo relativo
-                          <h2>{{ riesgo }}</h2>
-                      </div>
-                  </div>
+<!-- Start Content -->
+<div class="container-fluid top" style="min-height: 84.5vh;">
+    {% if portafolio %}
+    <div class="alert alert-success">
+        {{ portafolio }}
+    </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-1">
+        </div>
+        <div class="col-lg-10">
+            <h1 class="display-4">Portafolio de inversión</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <div class="row">
+                <div id="tester" style="height:500px;">
                 </div>
-                <div class="col-lg-5">
-                    <br><br>
-                    <form class="form-inline">
-                        <label for="email">Enviar por email:</label>
-                        <div class="form-group mx-sm-3 mb-2">
-                            <label for="correo" class="sr-only">Email</label>
-                            <input type="email" class="form-control" name="correo" id="correo" value="{{ email }}">
-                          </div>
-                          <button type="submit" class="btn btn-primary mb-2">Enviar</button>
-                    </form>
+            </div>
+            <div class="row">
+                <div class="col-1">
                 </div>
-              </div>
-      </div>
-      <!-- End Content -->
-      <script>
-            var market = {
-                name: 'Promedio mercado',
-                x: {{ market_x|safe }},
-                y: {{ market_y|safe }},
-                type: 'scatter'
-                };
-            var prices = {
-                name: 'Tu portafolio',
-                x: {{ prices_x|safe }},
-                y: {{ prices_y|safe }},
-                type: 'scatter'
-            };
-            var data = [market, prices];
+                <div class="col-lg-11">
+                    <div class="row">
 
-            var layout = {
-                  plot_bgcolor:"#07080b",
-                  paper_bgcolor:"#07080b",
-                  font: {
-                      color: "#fbfbff"
-                  },
-                  yaxis: {
-                      linecolor: "#fbfbff",
-                      showline: true,
-                      title: 'Retorno de inversión (%)',
-                  },
-                  xaxis: {
-                      linecolor: "#fbfbff",
-                      showline: true,
-                  }
-            }
+                        <div class="col-4">
+                            Ganancia anual historica
+                            <h2>{{ metricas.return|floatformat:2 }}%</h2>
+                        </div>
+                        <div class="col-4">
+                            Desviación estándar
+                            <h2>{{ metricas.std|floatformat:2 }}%</h2>
+                        </div>
+                        <div class="col-4">
+                            Dinero a invertir
+                            <h2>$ {{ dinero|intcomma }}</h2>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
 
-            TESTER = document.getElementById('tester');
-            Plotly.newPlot(TESTER, data, layout);
-      </script>
+                        <!-- <div class="col-4">
+                        Ganacia bruta anual
+                        <h2>$ {{ ganancia|floatformat:2|intcomma }}</h2>
+                    </div> -->
+                    <div class="col-4">
+                        Duración de la inversión
+                        <h2>{{ tiempo }} años</h2>
+                    </div>
+                    <div class="col-4">
+                        Riesgo relativo
+                        <h2>{{ riesgo }}</h2>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-1">
+            </div>
+          <div class="col-lg-11">
+              <br><br>
+              <form class="form-inline">
+                  <label for="email">Enviar por email:</label>
+                  <div class="form-group mx-sm-3 mb-2">
+                      <label for="correo" class="sr-only">Email</label>
+                      <input type="email" class="form-control" name="correo" id="correo" value="{{ email }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Enviar</button>
+              </form>
+          </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <p>
+            Este portafolio de inversión fue generado en su totalidad con inteligencia artificial.
+            Antes de invertir en estas empresas te recomendamos investigar cada una de ellas para que puedas decidir si deseas invertir en ella.
+        </p>
+        <h3>Componentes del portafolio</h3>
+        {% for simbolo in simbolos %}
+
+        Nombre: {{ simbolo.name }} &emsp; Símbolo: {{ simbolo.symbol }}
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" style="width: {{ simbolo.percentage }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ simbolo.percentage|floatformat:2 }}%</div>
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+
+</div>
+</div>
+<!-- End Content -->
+<script>
+    var market = {
+        name: 'Promedio mercado',
+        x: {{ market_x|safe }},
+        y: {{ market_y|safe }},
+        type: 'scatter'
+    };
+    var prices = {
+        name: 'Tu portafolio',
+        x: {{ prices_x|safe }},
+        y: {{ prices_y|safe }},
+        type: 'scatter'
+    };
+    var data = [market, prices];
+
+    var layout = {
+        plot_bgcolor:"#07080b",
+        paper_bgcolor:"#07080b",
+        font: {
+            color: "#fbfbff"
+        },
+        yaxis: {
+            linecolor: "#fbfbff",
+            showline: true,
+            title: 'Retorno de inversión (%)',
+        },
+        xaxis: {
+            linecolor: "#fbfbff",
+            showline: true,
+        }
+    }
+
+    TESTER = document.getElementById('tester');
+    Plotly.newPlot(TESTER, data, layout);
+</script>
 {% endblock %}

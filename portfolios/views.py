@@ -73,12 +73,15 @@ def ayuda(request):
                 usuario=usuario
             )
             comentario.save()
-            return render(request, 'ayuda.html', {"success": "Mensaje enviado!"})
+            return render(request, 'ayuda.html', {"success": "Mensaje enviado!","error":None})
         else:
-            return render(request, 'ayuda.html', {"error": form.errors})
+            errores = []
+            for value in form.errors.as_data().values():
+                errores.append(value[0].message)
+            return render(request, 'ayuda.html', {"error": errores, "success":None})
 
     else:
-        return render(request, 'ayuda.html', {})
+        return render(request, 'ayuda.html', {"error":None, "success":None})
 
 def buscar(request):
     if request.method == 'POST':
@@ -130,10 +133,13 @@ def buscar(request):
             usuario_port.save()
             return render(request, 'buscando.html', { "id": usuario_port.uuid_string })
         else:
-            return render(request, 'buscar.html', {"error": form.errors})
+            errores = []
+            for value in form.errors.as_data().values():
+                errores.append(value[0].message)
+            return render(request, 'buscar.html', {"error": errores, "success":None})
 
     else:
-        return render(request, 'buscar.html', {})
+        return render(request, 'buscar.html', {"error":None, "success":None})
 
 def contacto(request):
     if request.method == 'POST':
@@ -156,9 +162,12 @@ def contacto(request):
                 usuario=usuario
             )
             comentario.save()
-            return render(request, 'contacto.html', {"success": "Mensaje enviado!"})
+            return render(request, 'contacto.html', {"success": "Mensaje enviado!","error":None})
         else:
-            return render(request, 'contacto.html', {"error": form.errors})
+            errores = []
+            for value in form.errors.as_data().values():
+                errores.append(value[0].message)
+            return render(request, 'contacto.html', {"error": errores, "success":None})
 
     else:
-        return render(request, 'contacto.html', {})
+        return render(request, 'contacto.html', {"error":None, "success":None})

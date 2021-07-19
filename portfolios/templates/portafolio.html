@@ -86,6 +86,8 @@
         {% for simbolo in simbolos %}
 
         Nombre: {{ simbolo.name }} &emsp; Símbolo: {{ simbolo.symbol }}
+        <br>
+        <a href="https://g.co/finance/{{ simbolo.symbol }}:BMV" target="_blank">Ver en Google Finance</a>
         <div class="progress">
             <div class="progress-bar" role="progressbar" style="width: {{ simbolo.percentage }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">{{ simbolo.percentage|floatformat:2 }}%</div>
         </div>

@@ -11,7 +11,9 @@
           {% endif %}
           {% if error %}
           <div class="alert alert-danger">
-              {{ error }}
+              {% for err in error %}
+                  <li>{{ err }}</li>
+              {% endfor %}
           </div>
           {% endif %}
           <div class="row">

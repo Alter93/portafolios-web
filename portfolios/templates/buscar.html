@@ -12,7 +12,9 @@
                 {% endif %}
                 {% if error %}
                 <div class="alert alert-danger">
-                    {{ error }}
+                    {% for err in error %}
+                        <li>{{ err }}</li>
+                    {% endfor %}
                 </div>
                 {% endif %}
             </div>
@@ -45,7 +47,7 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Fecha de nacimiento</label>
                                 <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" name="fecha_nacimiento" class="form-control">
+                                    <input type="text" name="fecha_nacimiento" class="form-control" id="fecha_nac" data-date-end-date="-18y">
                                     <div class="input-group-append">
                                         <span class="input-group-text">
                                             <span class="fa fa-calendar"></span>
@@ -165,7 +167,7 @@
                     </p>
                     <br>
                     <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" required oninvalid="this.setCustomValidity('Por favor acepte los términos y condiciones')">
+                      <input class="form-check-input" name="tyc" type="checkbox" value="1" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
                         Acepto los términos y condiciones
                       </label>
@@ -181,5 +183,7 @@
     <br>
     <br>
     <br>
+
     <!-- End Content -->
+
 {% endblock %}

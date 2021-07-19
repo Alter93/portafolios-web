@@ -46,13 +46,65 @@
                         <div class="col-5">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Fecha de nacimiento</label>
-                                <div class="input-group date" data-provide="datepicker">
-                                    <input type="text" name="fecha_nacimiento" class="form-control" id="fecha_nac" data-date-end-date="-18y">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">
-                                            <span class="fa fa-calendar"></span>
-                                        </span>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <select class="form-control selectpicker fecha mesano" id="year" >
+                                            <option selected>Año</option>
+                                            {% for year in years %}
+                                            <option value="{{ year }}">{{ year }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
+                                    <div class="col-5">
+                                        <select class="form-control selectpicker fecha mesano" id="mes" >
+                                            <option selected>Mes</option>
+                                            <option value="01">Enero</option>
+                                            <option value="02">Febrero</option>
+                                            <option value="03">Marzo</option>
+                                            <option value="04">Abril</option>
+                                            <option value="05">Mayo</option>
+                                            <option value="06">Junio</option>
+                                            <option value="07">Julio</option>
+                                            <option value="08">Agosto</option>
+                                            <option value="09">Septiembre</option>
+                                            <option value="10">Octubre</option>
+                                            <option value="11">Noviembre</option>
+                                            <option value="12">Diciembre</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-3">
+                                        <select class="form-control selectpicker fecha" id="dia" >
+                                            <option selected>Día</option>
+                                        </select>
+                                    </div>
+                                    <input name="fecha_nacimiento"  id="fecha_nacimiento" type="text" hidden>
+                                    <script type="text/javascript">
+                                        $("#dia").change(function(){
+
+                                            var ano = $('#year').val();
+                                            var mes = $('#mes').val();
+                                            var dia = $('#dia').val();
+
+                                            $('#fecha_nacimiento').val(ano + "-" + mes + "-" + dia)
+                                        })
+                                        $(".mesano").change(function(){
+                                            var ano = $('#year').val();
+                                            var mes = $('#mes').val();
+                                            $('#dia').empty();
+                                            var opt = document.createElement('option');
+                                            opt.text = "Día";
+                                            opt.value = "Día";
+                                            $('#dia').append(opt);
+                                            var daysInMonth = new Date(ano, mes, 0).getDate();
+
+                                            for(var i = 1; i <= daysInMonth; i++){
+                                                var opt = document.createElement('option');
+                                                opt.text = i;
+                                                opt.value = i;
+                                                $('#dia').append(opt);
+                                            }
+                                        })
+                                    </script>
                                 </div>
                             </div>
                         </div>

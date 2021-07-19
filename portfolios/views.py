@@ -84,6 +84,9 @@ def ayuda(request):
         return render(request, 'ayuda.html', {"error":None, "success":None})
 
 def buscar(request):
+    years = list(range(1920, date.today().year - 18))
+    years.sort(reverse=True)
+
     if request.method == 'POST':
         form = BuscarForm(request.POST)
         if form.is_valid():
@@ -136,10 +139,10 @@ def buscar(request):
             errores = []
             for value in form.errors.as_data().values():
                 errores.append(value[0].message)
-            return render(request, 'buscar.html', {"error": errores, "success":None})
+            return render(request, 'buscar.html', {"error": errores, "success":None, "years": years})
 
     else:
-        return render(request, 'buscar.html', {"error":None, "success":None})
+        return render(request, 'buscar.html', {"error":None, "success":None, "years": years})
 
 def contacto(request):
     if request.method == 'POST':

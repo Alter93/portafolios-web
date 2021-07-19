@@ -1,3 +1,5 @@
+import datetime
+
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -9,7 +11,8 @@ class BuscarForm(forms.Form):
         'required': 'Ingresa una direccion de correo electrónico.'
     })
     fecha_nacimiento = forms.DateField(error_messages={
-        'required': 'Acepta los términos y condiciones.'
+        'required': 'Selecciona una fecha de nacimiento.',
+        'invalid': 'Selecciona una fecha de nacimiento válida.'
     })
     objetivo = forms.CharField(max_length=100)
     dinero = forms.DecimalField(max_digits=12, error_messages={

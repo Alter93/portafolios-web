@@ -1,20 +1,61 @@
 from datetime import date
 
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.utils.crypto import get_random_string
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 from .portafolio_helper import PortafolioHelper
 from .contact_form import ContactForm
 from .buscar_form import BuscarForm
+from .email_form import EmailForm
 from .models import Usuario, Comentario, UsuarioPortafolio, Portafolio
 
 # Create your views here.
 def home(request):
-    return render(request, 'homepage.html', {})
+    return render(request, 'homepage.html', { "success": None})
 
-def portafolio(request, id = 13):
+def enviar_mail(request, id = 0):
+    try:
+        usuario_port = UsuarioPortafolio.objects.get(uuid_string=id)
+    except UsuarioPortafolio.DoesNotExist:
+        raise Http404("El portafolio no existe.")
+
+    form = EmailForm(request.POST)
+
+    if form.is_valid():
+        port = PortafolioHelper(
+            filename = usuario_port.portafolio.archivo,
+            date = str(usuario_port.portafolio.fecha),
+            time = usuario_port.tiempo
+        )
+        simbolos = port.cargar_simbolos()
+        metricas = simbolos[-1]
+        metricas["std"] = metricas["std"] * -100
+        metricas["return"] = metricas["return"] * 100
+        riesgo = {1:"Bajo",2:"Medio",3:"Alto"}
+        ganancia = float(usuario_port.dinero) * metricas["return"] / 100
+        contenido = render_to_string(
+            'email_portafolio.html', {
+                "simbolos": simbolos[:-1],
+                "metricas": metricas,
+                "dinero": usuario_port.dinero,
+                "tiempo": usuario_port.tiempo[0],
+                "riesgo": riesgo[usuario_port.riesgo],
+                "ganancia" : ganancia,
+                "email": usuario_port.usuario.correo,
+                "id":id
+        })
+        subject = 'Tu portafolio - ALTEC.dev'
+        message = contenido
+        email_from = "info@altec.dev"
+        recipient_list = [form.cleaned_data.get('correo'),]
+        send_mail( subject, message, email_from, recipient_list , html_message=contenido)
+    return render(request, 'homepage.html', {"success": "Portafolio enviado!"})
+
+def portafolio(request, id = None):
     try:
         usuario_port = UsuarioPortafolio.objects.get(uuid_string=id)
     except UsuarioPortafolio.DoesNotExist:
@@ -44,7 +85,8 @@ def portafolio(request, id = 13):
             "tiempo": usuario_port.tiempo[0],
             "riesgo": riesgo[usuario_port.riesgo],
             "ganancia" : ganancia,
-            "email": usuario_port.usuario.correo
+            "email": usuario_port.usuario.correo,
+            "id":id
     })
 
 def acerca(request):

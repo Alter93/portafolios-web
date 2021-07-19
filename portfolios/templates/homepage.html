@@ -2,7 +2,13 @@
 {% load static %}
 {% block page_content %}
 <!-- Start Content -->
+{% if success %}
+<div class="alert alert-success">
+    {{ success }}
+</div>
+{% endif %}
 <div class="jumbotron-fluid title">
+
   <div class="row">
       <div class="col-1">
 

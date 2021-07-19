@@ -4,11 +4,7 @@
 {% block page_content %}
 <!-- Start Content -->
 <div class="container-fluid top" style="min-height: 84.5vh;">
-    {% if portafolio %}
-    <div class="alert alert-success">
-        {{ portafolio }}
-    </div>
-    {% endif %}
+
     <div class="row">
         <div class="col-1">
         </div>
@@ -65,7 +61,8 @@
             </div>
           <div class="col-lg-11">
               <br><br>
-              <form class="form-inline">
+              <form class="form-inline" action="/mail/{{ id }}" method="post">
+                  {% csrf_token %}
                   <label for="email">Enviar por email:</label>
                   <div class="form-group mx-sm-3 mb-2">
                       <label for="correo" class="sr-only">Email</label>

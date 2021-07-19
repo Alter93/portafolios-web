@@ -8,4 +8,5 @@ urlpatterns = [
     path('buscar', views.buscar, name='buscar'),
     path('contacto', views.contacto, name='contacto'),
     path('portafolio/<str:id>', views.portafolio, name='portafolio'),
+    path('mail/<str:id>', views.enviar_mail, name='email'),
 ]

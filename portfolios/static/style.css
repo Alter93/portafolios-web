@@ -127,20 +127,20 @@ p.home{
 }
 
 footer {
-    font-size: 1rem;
-    padding: 1.5%;
+    font-size: 12pt;
+    padding: 15px;
     background-color: #07080b ;
     color: #fff;
     font-weight: normal;
     font-family: "Graphik";
 }
 
-footer a {
-    font-size: 1rem;
-    color: #fbfbff;
+footer a:any-link{
+    color: #fbfbff; !important
     font-weight: normal;
     font-family: "Graphik";
 }
+
 .display-6{
     font-size: 1.8rem;
 }
@@ -152,12 +152,6 @@ p{
     font-weight: 200;
 }
 
-footer a:hover {
-    font-size: 1rem;
-    color: #fbfbff;
-    font-weight: bold;
-    font-family: "Graphik";
-}
 
 .btn-xl {
     padding: 18px 28px;

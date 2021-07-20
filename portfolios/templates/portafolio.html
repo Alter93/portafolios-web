@@ -15,7 +15,9 @@
     <div class="row">
         <div class="col-lg-7">
             <div class="row">
-                <div id="tester" style="height:500px;">
+                <div class="col-lg-12">
+                    <div id="tester" style="height:450px;">
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -24,31 +26,30 @@
                 <div class="col-lg-11">
                     <div class="row">
 
-                        <div class="col-4">
+                        <div class="col-lg-4">
                             Ganancia anual historica
                             <h2>{{ metricas.return|floatformat:2 }}%</h2>
                         </div>
-                        <div class="col-4">
+                        <div class="col-lg-4">
                             Desviación estándar
                             <h2>{{ metricas.std|floatformat:2 }}%</h2>
                         </div>
-                        <div class="col-4">
+                        <div class="col-lg-4">
                             Dinero a invertir
                             <h2>$ {{ dinero|intcomma }}</h2>
                         </div>
                     </div>
-                    <br>
                     <div class="row">
 
                         <!-- <div class="col-4">
                         Ganacia bruta anual
                         <h2>$ {{ ganancia|floatformat:2|intcomma }}</h2>
                     </div> -->
-                    <div class="col-4">
+                    <div class="col-lg-4">
                         Duración de la inversión
                         <h2>{{ tiempo }} años</h2>
                     </div>
-                    <div class="col-4">
+                    <div class="col-lg-4">
                         Riesgo relativo
                         <h2>{{ riesgo }}</h2>
                     </div>
@@ -115,6 +116,11 @@
         paper_bgcolor:"#07080b",
         font: {
             color: "#fbfbff"
+        },
+        legend: {
+            x: 1,
+            xanchor: 'right',
+            y: 0
         },
         yaxis: {
             linecolor: "#fbfbff",

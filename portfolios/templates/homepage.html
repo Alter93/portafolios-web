@@ -2,11 +2,7 @@
 {% load static %}
 {% block page_content %}
 <!-- Start Content -->
-{% if success %}
-<div class="alert alert-success">
-    {{ success }}
-</div>
-{% endif %}
+
 <div class="jumbotron-fluid title">
 
   <div class="row">
@@ -14,15 +10,20 @@
 
       </div>
       <div class="col-10">
-          <h1 class="display-4">Portafolios de inversión</h1>
-          <p class="home">Usa inteligencia artificial para obtener el mejor rendimiento de tus inversiones en la bolsa de valores.</p>
-      </div>
-  </div>
-  <div class="row text-center">
-      <div class="col-12 flecha">
+          {% if success %}
+          <div class="alert alert-success">
+              {{ success }}
+          </div>
+          <br>
+          <br>
+          {% endif %}
 
-          <a href="#"><img src="{% static 'flecha.png' %}"></a>
+          <h1 class="display-4">Portafolios de inversión</h1>
+          <p class="display-5">Usa inteligencia artificial para obtener el mejor rendimiento de tus inversiones en la bolsa de valores.      <br>
+              <br>      <br>
+                  <br></p>
       </div>
+
   </div>
 </div>
 <div class="jumbotron-fluid light">
@@ -43,7 +44,7 @@
            <p class="home pasos">Usa de nuestra herramienta de inteligencia artificial para encontrar la diversificacion óptima de activos.</p>
        </div>
    </div>
-   <div class="row pasos">
+   <div class="row">
        <div class="col-4">
        </div>
        <div class="col-4">
@@ -124,11 +125,11 @@
 </div>
 <div class="jumbotron-fluid">
 
-  <div class="row">
+  <div class="row text-center">
       <div class="col-2">
       </div>
-      <div class="col-8">
-          <a class="btn btn-primary btn-xl btn-block" href="/buscar" role="button">Encontrar un <br> portafolio</a>
+      <div class="col-lg-8">
+          <a class="btn btn-primary btn-xl btn-block" href="/buscar" role="button">Encontrar un portafolio</a>
       </div>
   </div>
 

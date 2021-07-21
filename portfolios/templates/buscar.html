@@ -38,7 +38,7 @@
                         <div class="col-12">
                         <div class="form-group">
                             <label for="nombre">Nombre completo</label>
-                            <input type="name" class="form-control" name="nombre" placeholder="Tu nombre" required>
+                            <input type="name" class="form-control" name="nombre" placeholder="Tu nombre" required value={{ form.nombre.value|default_if_none:"" }}>
                         </div>
                         </div>
                     </div>
@@ -77,8 +77,9 @@
                                             <option selected>Día</option>
                                         </select>
                                     </div>
-                                    <input name="fecha_nacimiento"  id="fecha_nacimiento" type="text" hidden>
+                                    <input name="fecha_nacimiento"  id="fecha_nacimiento" type="text" hidden value={{ form.fecha_nacimiento.value|default_if_none:"" }}>
                                     <script type="text/javascript">
+
                                         $("#dia").change(function(){
 
                                             var ano = $('#year').val();
@@ -104,6 +105,27 @@
                                                 $('#dia').append(opt);
                                             }
                                         })
+
+                                        const myArr = $('#fecha_nacimiento').val().split("-");
+
+                                        $("#year").val(myArr[0]);
+                                        $("#mes").val(myArr[1]);
+                                        $('#dia').empty();
+
+                                        var opt = document.createElement('option');
+                                        opt.text = "Día";
+                                        opt.value = "Día";
+                                        $('#dia').append(opt);
+                                        var daysInMonth = new Date(myArr[0], myArr[1], 0).getDate();
+
+                                        for(var i = 1; i <= daysInMonth; i++){
+                                            var opt = document.createElement('option');
+                                            opt.text = i;
+                                            opt.value = i;
+                                            $('#dia').append(opt);
+                                        }
+
+                                        $("#dia").val(myArr[2]);
                                     </script>
                                 </div>
                             </div>
@@ -111,7 +133,7 @@
                         <div class="col-lg-7">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Correo electronico</label>
-                                <input type="email" class="form-control" name="correo" aria-describedby="emailHelp" placeholder="alejandro@dominio.com">
+                                <input type="email" class="form-control" name="correo" aria-describedby="emailHelp" placeholder="alejandro@dominio.com" value={{ form.correo.value|default_if_none:"" }}>
                             </div>
                         </div>
                     </div>
@@ -127,7 +149,7 @@
                         <div class="col-lg-7">
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Objetivo</label>
-                                <select class="form-control selectpicker" name="objetivo" id="selectpicker">
+                                <select class="form-control selectpicker" name="objetivo" id="selectpicker" value={{ form.objetivo.value|default_if_none:"" }}>
                                     <option selected>Seleccionar...</option>
                                     <option>Fondo de retiro</option>
                                     <option>Generar una renta</option>
@@ -143,7 +165,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">$</span>
                                 </div>
-                                <input type="number" class="form-control" name="dinero"  placeholder="Dinero en pesos" required>
+                                <input type="number" class="form-control" name="dinero"  placeholder="Dinero en pesos" required value={{ form.dinero.value|default_if_none:"" }}>
                             </div>
                         </div>
                     </div>
@@ -153,15 +175,15 @@
                             <label for="exampleFormControlSelect1">Horizonte de tiempo</label>
                             <div class="form-group">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio1" value="2y" required>
+                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio1" value="2y" required >
                                     <label class="form-check-label" for="inlineRadio1">1-2 años</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio2" value="3y" required>
+                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio2" value="3y" required >
                                     <label class="form-check-label" for="inlineRadio2">3-5 años</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio3" value="5y" required>
+                                    <input class="form-check-input" type="radio" name="tiempo" id="inlineRadio3" value="5y" required >
                                     <label class="form-check-label" for="inlineRadio3">5+ años</label>
                                 </div>
                             </div>

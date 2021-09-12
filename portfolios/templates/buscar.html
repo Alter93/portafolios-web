@@ -49,7 +49,7 @@
                                 <div class="row">
                                     <div class="col-lg-4">
                                         <select class="form-control selectpicker fecha mesano" id="year" >
-                                            <option selected>Año</option>
+                                            <option value="" disabled selected>Año</option>
                                             {% for year in years %}
                                             <option value="{{ year }}">{{ year }}</option>
                                             {% endfor %}
@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="col-lg-5">
                                         <select class="form-control selectpicker fecha mesano" id="mes" >
-                                            <option selected>Mes</option>
+                                            <option value="" disabled selected>Mes</option>
                                             <option value="01">Enero</option>
                                             <option value="02">Febrero</option>
                                             <option value="03">Marzo</option>
@@ -79,7 +79,6 @@
                                     </div>
                                     <input name="fecha_nacimiento"  id="fecha_nacimiento" type="text" hidden value={{ form.fecha_nacimiento.value|default_if_none:"" }}>
                                     <script type="text/javascript">
-
                                         $("#dia").change(function(){
 
                                             var ano = $('#year').val();
@@ -96,6 +95,7 @@
                                             opt.text = "Día";
                                             opt.value = "Día";
                                             $('#dia').append(opt);
+                                            opt.selected = true;
                                             var daysInMonth = new Date(ano, mes, 0).getDate();
 
                                             for(var i = 1; i <= daysInMonth; i++){
@@ -112,10 +112,11 @@
                                         $("#mes").val(myArr[1]);
                                         $('#dia').empty();
 
-                                        var opt = document.createElement('option');
-                                        opt.text = "Día";
-                                        opt.value = "Día";
-                                        $('#dia').append(opt);
+                                        var opt1 = document.createElement('option');
+                                        opt1.text = "Día";
+                                        opt1.value = "Día";
+                                        $('#dia').append(opt1);
+
                                         var daysInMonth = new Date(myArr[0], myArr[1], 0).getDate();
 
                                         for(var i = 1; i <= daysInMonth; i++){
@@ -124,15 +125,15 @@
                                             opt.value = i;
                                             $('#dia').append(opt);
                                         }
-
-                                        $("#dia").val(myArr[2]);
+                                        opt1.selected = true;
+                                        opt1.disabled = true;
                                     </script>
                                 </div>
                             </div>
                         </div>
                         <div class="col-lg-7">
                             <div class="form-group">
-                                <label for="exampleFormControlSelect1">Correo electronico</label>
+                                <label for="exampleFormControlSelect1">Correo electrónico</label>
                                 <input type="email" class="form-control" name="correo" aria-describedby="emailHelp" placeholder="alejandro@dominio.com" value={{ form.correo.value|default_if_none:"" }}>
                             </div>
                         </div>
@@ -150,22 +151,24 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Objetivo</label>
                                 <select class="form-control selectpicker" name="objetivo" id="selectpicker" value={{ form.objetivo.value|default_if_none:"" }}>
-                                    <option selected>Seleccionar...</option>
+                                    <option disabled selected>Seleccionar...</option>
                                     <option>Fondo de retiro</option>
-                                    <option>Generar una renta</option>
-                                    <option>Acumular riqueza</option>
+                                    <option>Aumentar mis ingresos</option>
                                     <option>Ahorro para mis hijos</option>
+                                    <option>Cumplir algún otro objetivo</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-lg-5">
-                            <label for="exampleFormControlSelect1">Cantidad de dinero</label>
+                            <label for="exampleFormControlSelect1">Dinero a invertir</label>
                             <div class="input-group">
-
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">$</span>
-                                </div>
-                                <input type="number" class="form-control" name="dinero"  placeholder="Dinero en pesos" required value={{ form.dinero.value|default_if_none:"" }}>
+                                <select class="form-control selectpicker" name="dinero" >
+                                    <option disabled selected>Seleccionar cantidad...</option>
+                                    <option value="50000">Menos de $50.000 pesos</option>
+                                    <option value="100000">Entre $50.001 y $100.000 pesos</option>
+                                    <option value="200000">Entre $100.001 y $200.000 pesos</option>
+                                    <option value="201000">Más de $200.000 pesos</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -212,17 +215,17 @@
                     <br>
                     <div class="row">
                         <div class="col-12">
-                            <label for="exampleFormControlSelect1">Criterio de búsqueda</label>
+                            <label for="exampleFormControlSelect1">Tipo de portafolio</label>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="metrica" id="exampleRadios1" value="calculate_std" required>
+                                <input class="form-check-input" type="radio" name="tipo_portafolio" id="exampleRadios1" value="acciones" required>
                                 <label class="form-check-label" for="exampleRadios1">
-                                    Orientada a la diversificación
+                                    Sólo acciones
                                 </label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="radio" name="metrica" id="exampleRadios2" value="beta_std_dev" required>
+                                <input class="form-check-input" type="radio" name="tipo_portafolio" id="exampleRadios2" value="todo" required>
                                 <label class="form-check-label" for="exampleRadios2">
-                                    Orientada al retorno de inversión
+                                    Acciones + bonos + fondos de deuda
                                 </label>
                             </div>
                         </div>
@@ -246,15 +249,13 @@
                     <div class="form-check">
                       <input class="form-check-input" name="tyc" type="checkbox" value="1" id="defaultCheck1">
                       <label class="form-check-label" for="defaultCheck1">
-                        Acepto los términos y condiciones
+                        Acepto <a href="/static/tyc.pdf">los términos y condiciones</a>
                       </label>
                     </div>
                     <br>
                     <button class="btn-lg btn-primary">Buscar</button>
                 </div>
             </div>
-
-
         </form>
     </div>
     <br>

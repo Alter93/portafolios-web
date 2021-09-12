@@ -24,8 +24,8 @@ class BuscarForm(forms.Form):
     riesgo = forms.DecimalField(max_digits=1, error_messages={
         'required': 'Selecciona un nivel de riesgo.'
     })
-    metrica = forms.CharField(max_length=100, error_messages={
-        'required': 'Escoge un criterio de búsqueda.'
+    tipo_portafolio = forms.CharField(max_length=100, error_messages={
+        'required': 'Escoge un tipo de portafolio.'
     })
     tyc = forms.CharField(max_length=2, error_messages={
         'required': 'Por favor acepta los términos y condiciones.'

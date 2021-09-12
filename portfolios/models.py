@@ -41,6 +41,7 @@ class UsuarioPortafolio(models.Model):
     riesgo = models.DecimalField(max_digits=1,decimal_places=0)
     uuid_string = models.CharField(max_length=33)
     fecha_visita = models.DateField()
+    tipo_portafolio = models.CharField(max_length=25, blank=True, null=True)
     portafolio = models.ForeignKey(Portafolio, on_delete=models.CASCADE)
 
     def __str__(self):

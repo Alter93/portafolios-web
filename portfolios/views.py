@@ -147,7 +147,8 @@ def buscar(request):
             usuario.save()
             dinero = form.cleaned_data.get('dinero')
             cantidad_acciones = 5
-            metrica = form.cleaned_data.get('metrica')
+            metrica = "beta_std_dev"
+            tipo_portafolio = form.cleaned_data.get('tipo_portafolio')
             if (dinero > 50000):
                 cantidad_acciones = 9
             if (dinero > 125000):
@@ -171,8 +172,9 @@ def buscar(request):
                 dinero=dinero,
                 uuid_string = unique_id,
                 objetivo=form.cleaned_data.get('objetivo'),
-                metrica=form.cleaned_data.get('metrica'),
-                portafolio=portafolio
+                metrica=metrica,
+                portafolio=portafolio,
+                tipo_portafolio = form.cleaned_data.get('tipo_portafolio')
             )
 
             usuario_port.save()

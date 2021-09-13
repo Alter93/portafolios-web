@@ -8,6 +8,9 @@ class Usuario(models.Model):
     correo = models.EmailField(unique = True)
     fecha_nacimiento = models.DateField(blank=True, null=True)
 
+    def __str__(self):
+        return self.nombre
+
     class Meta:
         db_table = "usuarios"
 
@@ -17,6 +20,10 @@ class Comentario(models.Model):
     fecha = models.DateField()
     asunto = models.CharField(max_length=100)
     mensaje = models.CharField(max_length=2000)
+
+    def __str__(self):
+        return self.usuario.nombre + " " + self.asunto
+
     class Meta:
         db_table = "comentarios"
 
@@ -28,6 +35,10 @@ class Portafolio(models.Model):
     dinero = models.DecimalField(max_digits=12,decimal_places=0)
     metrica = models.CharField(max_length=25)
     archivo = models.CharField(max_length=105)
+
+    def __str__(self):
+        return self.riesgo + " " + self.tiempo + " - " + self.fecha
+
     class Meta:
         db_table = "portafolios"
 
@@ -45,7 +56,7 @@ class UsuarioPortafolio(models.Model):
     portafolio = models.ForeignKey(Portafolio, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.nombre + " " + self.objetivo
+        return self.usuario.nombre + " " + self.fecha_visita
 
     class Meta:
         db_table = "usuarios_portafolios"

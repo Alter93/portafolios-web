@@ -22,7 +22,7 @@ class Comentario(models.Model):
     mensaje = models.CharField(max_length=2000)
 
     def __str__(self):
-        return self.usuario.nombre + " " + self.asunto
+        return self.usuario.nombre + " - " + self.asunto
 
     class Meta:
         db_table = "comentarios"
@@ -37,7 +37,7 @@ class Portafolio(models.Model):
     archivo = models.CharField(max_length=105)
 
     def __str__(self):
-        return self.riesgo + " " + self.tiempo + " - " + self.fecha
+        return self.riesgo + " " + self.tiempo + " - " + str(self.fecha)
 
     class Meta:
         db_table = "portafolios"
@@ -56,7 +56,7 @@ class UsuarioPortafolio(models.Model):
     portafolio = models.ForeignKey(Portafolio, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.usuario.nombre + " " + self.fecha_visita
+        return self.usuario.nombre + " " + str(self.fecha_visita)
 
     class Meta:
         db_table = "usuarios_portafolios"

@@ -37,7 +37,7 @@ class Portafolio(models.Model):
     archivo = models.CharField(max_length=105)
 
     def __str__(self):
-        return self.riesgo + " " + self.tiempo + " - " + str(self.fecha)
+        return str(self.riesgo) + " " + self.tiempo + " - " + str(self.fecha)
 
     class Meta:
         db_table = "portafolios"
